@@ -3,7 +3,7 @@ import mongoose, { Schema } from "mongoose";
  var movieSchema = new Schema({
    title: {
      type: String,
-     unique: true;
+     unique: true,
    },
    poster: String,
    genre: String,
