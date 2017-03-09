@@ -1,5 +1,5 @@
-import Movie from "./model/movie";
-import moment from 'monent';
+import Movie from "../models/movie";
+import moment from 'moment';
 
 const days = ["Today", "Tomorrow", moment().add(2, 'days').format('ddd, MMM D')];
 

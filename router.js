@@ -3,7 +3,7 @@ import { index } from "./controllers/movies";
 
 const router = Router();
 
-router.route("./movies.json")
+router.route("/movies.json")
   .get(index);
 
-export default router; 
+export default router;
