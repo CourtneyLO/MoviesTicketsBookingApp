@@ -1,89 +1,61 @@
-import React { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
-  Animated,
+  Dimensions,
   StyleSheet,
-  Text,
-  TouchableOpacity,
+  ScrollView,
+  View
 } from 'react-native';
 
-import { defaultStyles } from './styles'
+import Option from './Option';
 
-const colorDefault = 'rgba(255, 255, 255, 1)';
-  colorSelected = 'rgba(103, 58, 183, 1)';
+const { width } = Dimensions.get('window');
+
+const optionWidth = (width - 0) / 3 -10;
 
 export default class Options extends Component {
 
-  static propTypes = {
-    value: PropTypes.string.isRequired,
-    isChosen: PropTypes.bool.isRequired,
+  static propTypes={
+    values: PropTypes.array.isRequired,
+    chosen: PropTypes.number,
     onChoosen: Proptypes.func.isRequired,
   }
 
-  state= {
-    background: new Animated.Value(0)
-  }
-
-  componentWillMount() {
-    if(this.props.isChosen) {
-      this.animateSelect();
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (!this.props.isChosen && nextProps.isChosen) {
-      this.animateSelect();
-    } else if (this.props.isChosen && !nextProps.isChosen) {
-      this.animateDeselect();
-    }
-  }
-
-  animateSelect() {
-    Animated.timing(this.statebackground, {
-      toValue: 100,
-      duration: 200,
-    }).start();
-  }
-
-  animateDeselect() {
-    Animated.timing(this.state.background, {
-      toValue: 0,
-      duration: 200,
-    }).start();
-  }
-
   render() {
-    const { value, isChosen, onChoose } = this.props;
-    const backgroundColorAnimation = this.state.background.interpolate({
-      inputRange: [0, 100],
-      ouputRange: [colorDefault, colorSelected],
-    });
+    const { values, chosen, onChoosen } = this.props;
     return (
-      <TouchableOpacity
-        activeOpacity={1}
-        onPress={onChoose}
-      >
-        <Animated.View
-          style={[styles.container, { backgroundColor: backgroundColorAnimation}]}
+      <View styles={styles.container}>
+        <ScrollView
+          ref={(scrollView) => { this._scrollView = scrollView; }}
+          horizontal={true}
+          decelerationRate={0.1}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+          snapToInterval={optionWidth}
+          style={styles.options}
         >
-          <Text style={{ color: isChosen ? colorDefault : colorSelected }}>
-          {value}
-          </Text>
-        </Animated.View>
-      </TouchableOpacity>
+
+          {valies.map((value, index) =>
+            <View style={{ width: optionWidth }} key={index}>
+              <Option
+                value={value}
+                isChoosen={index === chosen}
+                onChoose={() => onChoose(index)}
+              />
+            </View>
+          )}
+        </ScrollView>
+      </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  conatiner: {
-    alignItems: 'center',
-    boderColor: colorSelected,
-    borderWidth: 1,
-    borderRadius: 10,
-    padding: 10,
-    marginRight: 10,
+const styles = Style.create({
+  container: {
+    marginTop: 10,
+    marginBottom: 20,
   },
-  text: {
-    ...defaultStyles.text,
-  }
-})
+  options: {
+    flexDirection: 'row',
+    marginRight: -10,
+  },
+});
