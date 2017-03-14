@@ -78,7 +78,7 @@ export const movies = [
   },
   {
     title: 'Finding Dory',
-    poster: 'http://vignette4.wikia.nocookie.net/pixar/images/0/0e/FINDING_DORY_-_Key_Art.jpg/revision/latest?cb=20160515234044',
+    poster: 'https://s-media-cache-ak0.pinimg.com/236x/74/54/15/745415dd46df7690cca3dda63ec9b929.jpg',
     genre: 'Comedy/Adventure',
     days,
     times,
@@ -127,7 +127,7 @@ export const movies = [
   },
   {
     title: 'Zoolander 2',
-    poster: 'http://br.web.img2.acsta.net/c_215_290/pictures/15/12/09/21/26/151291.jpg',
+    poster: 'https://3.bp.blogspot.com/-ju14wC0oHhA/VyjgjEjcyCI/AAAAAAAAb2k/OXP07HVX6ooBL43hyiiZYhHMbwpRLH8hQCLcB/s1600/Zoolander-2-HD-2016-1080p-Latino.jpg',
     genre: 'Comedy',
     days,
     times,
