@@ -13,7 +13,7 @@ export default class Movies extends Component {
   state = {
     popupIsOpen: false,
     chosenDay: 0,
-    chosendTime: null,
+    chosenTime: null,
   }
 
   openMovie = (movie) => {
@@ -37,9 +37,9 @@ export default class Movies extends Component {
     });
   }
 
-  choseTime = (time) => {
+  chooseTime = (time) => {
     this.setState({
-      choosenTime: time,
+      chosenTime: time,
     });
   }
 
@@ -64,7 +64,7 @@ export default class Movies extends Component {
           onClose={this.closeMovie}
           chosenDay={this.state.chosenDay}
           chosenTime={this.state.chosenTime}
-          onChoosenDay={this.chooseDay}
+          onChooseDay={this.chooseDay}
           onChooseTime={this.chooseTime}
           />
       </View>

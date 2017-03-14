@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 
 import { defaultStyles } from './styles';
+import Options from './Options';
 
 const { width, height } = Dimensions.get('window');
 
@@ -26,7 +27,7 @@ export default class MoviePopup extends Component {
     movie: PropTypes.object,
     chosenDay: PropTypes.number,
     chosenTime: PropTypes.number,
-    onChoosenDay: PropTypes.func,
+    onChooseDay: PropTypes.func,
     onChooseTime: PropTypes.func,
     onBook: PropTypes.func,
     onClose: PropTypes.func,
@@ -126,7 +127,7 @@ export default class MoviePopup extends Component {
     Animated.parallel([
 
       Animated.timing(
-        this.state.opacity, { toValue: 0 } 
+        this.state.opacity, { toValue: 0 }
       ),
 
       Animated.timing(
@@ -223,11 +224,19 @@ render() {
            {}
            <Text style={styles.sectionHeader}>Day</Text>
            {}
-           <Text>Add day options here</Text>
+           <Options
+              values={days}
+              chosen={chosenDay}
+              onChoose={onChooseDay}
+           />
            {}
            <Text style={styles.sectionHeader}>Showtime</Text>
            {}
-           <Text>Add show time options here</Text>
+           <Options
+              values={times}
+              chosen={chosenTime}
+              onChoose={onChooseTime}
+           />
          </View>
 
        </View>

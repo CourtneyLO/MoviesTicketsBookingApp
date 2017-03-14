@@ -1,44 +1,51 @@
 import React, { Component, PropTypes } from 'react';
 import {
   Dimensions,
-  StyleSheet,
   ScrollView,
+  StyleSheet,
   View
 } from 'react-native';
-
 import Option from './Option';
 
 const { width } = Dimensions.get('window');
-
-const optionWidth = (width - 0) / 3 -10;
+const optionWith = (width - 0) / 3 - 10;
 
 export default class Options extends Component {
 
-  static propTypes={
+  static propTypes = {
+    // Set of values to choose from
     values: PropTypes.array.isRequired,
+    // Chosen value index
     chosen: PropTypes.number,
-    onChoosen: Proptypes.func.isRequired,
+    // Gets called when user choses a value
+    onChoose: PropTypes.func.isRequired,
   }
 
   render() {
-    const { values, chosen, onChoosen } = this.props;
+    const { values, chosen, onChoose } = this.props;
+    console.log(this.props)
     return (
-      <View styles={styles.container}>
+      <View style={styles.container}>
         <ScrollView
           ref={(scrollView) => { this._scrollView = scrollView; }}
+          // Horizontall scrolling
           horizontal={true}
+          // Decelerate fast after the user lifts their finger
           decelerationRate={0.1}
+          // Hide all scroll indicators
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
-          snapToInterval={optionWidth}
+          // Do not adjust content automatically
+          automaticallyAdjustContentInsets={false}
+          // Snap interval to stop at option edges
+          snapToInterval={optionWith}
           style={styles.options}
         >
-
-          {valies.map((value, index) =>
-            <View style={{ width: optionWidth }} key={index}>
+          {values.map((value, index) =>
+            <View style={{ width: optionWith }} key={index}>
               <Option
                 value={value}
-                isChoosen={index === chosen}
+                isChosen={index === chosen}
                 onChoose={() => onChoose(index)}
               />
             </View>
@@ -47,9 +54,10 @@ export default class Options extends Component {
       </View>
     );
   }
+
 }
 
-const styles = Style.create({
+const styles = StyleSheet.create({
   container: {
     marginTop: 10,
     marginBottom: 20,
