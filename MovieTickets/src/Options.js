@@ -13,11 +13,8 @@ const optionWith = (width - 0) / 3 - 10;
 export default class Options extends Component {
 
   static propTypes = {
-    // Set of values to choose from
     values: PropTypes.array.isRequired,
-    // Chosen value index
     chosen: PropTypes.number,
-    // Gets called when user choses a value
     onChoose: PropTypes.func.isRequired,
   }
 
@@ -28,16 +25,11 @@ export default class Options extends Component {
       <View style={styles.container}>
         <ScrollView
           ref={(scrollView) => { this._scrollView = scrollView; }}
-          // Horizontall scrolling
           horizontal={true}
-          // Decelerate fast after the user lifts their finger
           decelerationRate={0.1}
-          // Hide all scroll indicators
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
-          // Do not adjust content automatically
           automaticallyAdjustContentInsets={false}
-          // Snap interval to stop at option edges
           snapToInterval={optionWith}
           style={styles.options}
         >
