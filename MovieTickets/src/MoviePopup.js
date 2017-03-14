@@ -14,10 +14,11 @@ import {
 
 import { defaultStyles } from './styles';
 import Options from './Options';
+import Confirmation from './confirmation';
 
 const { width, height } = Dimensions.get('window');
 
-const defaultHeight = height * 0.47;
+const defaultHeight = height * 0.70;
 
 
 export default class MoviePopup extends Component {

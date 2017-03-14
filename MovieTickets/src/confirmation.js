@@ -6,9 +6,9 @@ import {
   View
 } from 'react-native';
 
-import { deafaultStyles } from './styles';
+import { defaultStyles } from './styles';
 
-export default class Confirmation extends Components {
+export default class Confirmation extends Component {
 
   static propTypes = {
     code: PropTypes.string.isRequired,
